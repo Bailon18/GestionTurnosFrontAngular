@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { Ticket } from '../lista-espera/ticket';
+import baseUrl from 'src/app/helpers';
 
 
 
@@ -23,7 +24,7 @@ export class WebSocketService {
 
   public connect(): void {
 
-    const socket = new SockJS('http://localhost:8080/llamar');
+    const socket = new SockJS(baseUrl +'/llamar');
     this.stompClient = Stomp.over(socket);
 
     this.stompClient.connect({}, () => {
