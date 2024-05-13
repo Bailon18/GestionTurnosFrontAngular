@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="bg-secondary">
+  <main class="d-flex justify-content-center align-items-center vh-100">
+      <div class="card p-2" style="max-width: 350px">
+          <div class="card-body">
+              <div class="text-center mb-2">
+                  <img src="/assets/imagen/logoreal.png"   height="180px" />
+              </div>
+              <br>
+              <form [formGroup]="formulario" (ngSubmit)="ingresar">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label style="font-size: 0.875rem;">Username</mat-label>
+                      <input matInput autocomplete="off" formControlName="username" placeholder="Ingrese username">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label style="font-size: 0.875rem;">Contraseña</mat-label>
+                      <input matInput type="password" autocomplete="off" formControlName="password" placeholder="Ingrese su contraseña">
+                  </mat-form-field>
+                  <div class="d-flex justify-content-between align-items-center mt-1">
+                      <button type="submit" class="btn btn-primary" (click)="ingresar()" [disabled]="formulario.invalid" style="font-size: 0.875rem;">Ingresar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </main>
+</body>

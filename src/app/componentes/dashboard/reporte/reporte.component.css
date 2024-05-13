@@ -1,0 +1,23 @@
+
+  
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+    color: #212529;
+}
+
+.titulodisabled{
+    color: #1b428a;
+}
+
+.nombrepaciente{
+    font-weight: 500;
+}
+
+
+mat-form-field {
+    width: 100%;
+  }
+  
+table {
+    width: 100%;
+}

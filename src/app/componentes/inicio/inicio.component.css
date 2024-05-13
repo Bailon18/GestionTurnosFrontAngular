@@ -1,0 +1,43 @@
+.active {
+    background-color: #3f51b5; /* Cambia el color de fondo según tus preferencias */
+    color: white; /* Cambia el color del texto según tus preferencias */
+}
+
+
+.mat-icon-color-custom-1 {
+    color: #a1887f; 
+}
+
+.mat-icon-color-custom-2 {
+    color: #7986cb; 
+}
+
+.mat-icon-color-custom-3 {
+    color: #90a4ae;
+}
+
+
+.container {
+    max-width: 800px; /* Ajusta el valor según tus necesidades */
+}
+
+
+.custom-button-1 {
+    background-color: #c5bfbc; 
+    color: white;
+    width: 80%; 
+  }
+
+  .custom-button-2 {
+    background-color: #bcc6ff; 
+    color: white; 
+    width: 80%; 
+  }
+
+  .custom-button-3 {
+    background-color: #bbe3f7;
+    color: white;
+    width: 80%; 
+}
+
+  

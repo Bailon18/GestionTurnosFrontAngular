@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <mat-card>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-center align-items-center" >
+            <img src="/assets/imagen/logoreal.png" alt="Logo" height="150px">
+          </div>
+          <div class="col-md-6" >
+            <br>
+            <button mat-button routerLink="/geracion-de-ticket" class="mb-2 custom-button-1" (click)="redirect('/tickets')">
+                <mat-icon class="mat-icon-color-custom-1">assignment</mat-icon>
+                Generación de Ticket
+              </button>
+              <button mat-button routerLink="/lista-de-espera" class="mb-2 custom-button-2" (click)="redirect('/listaespera')">
+                <mat-icon class="mat-icon-color-custom-2">list</mat-icon>
+                Lista de Espera
+              </button>
+              <br>
+              <button mat-button  class="custom-button-3" (click)="redirect('/login')">
+                <mat-icon class="mat-icon-color-custom-3">login</mat-icon>
+                Inicio Sesión
+              </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,137 @@
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>numero documento</mat-label>
+                <input matInput  #numDocInput>
+            </mat-form-field>
+            <mat-card class="small-card">
+                <mat-card-content>
+                    <mat-grid-list cols="3" rowHeight="2:1">
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('1', numDocInput)">1</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('2', numDocInput)">2</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('3', numDocInput)">3</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('4', numDocInput)">4</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('5', numDocInput)">5</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('6', numDocInput)">6</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('7', numDocInput)">7</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('8', numDocInput)">8</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile>
+                        <button mat-button class="num-btn" (click)="addToNumDoc('9', numDocInput)">9</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="1" rowspan="2">
+                        <button mat-button class="num-btn" (click)="addToNumDoc('0', numDocInput)">0</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="2" rowspan="1">
+                        <button mat-button class="accept-btn" (click)="onAceptarClick(numDocInput.value)">Aceptar</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="1" rowspan="1">
+                        <button mat-button class="accept-btn" (click)="deleteFromNumDoc(numDocInput)">Borrar</button>
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="1" rowspan="1">
+                        <button mat-button class="accept-btn" (click)="limpiarNumeroDocumento(numDocInput)">Limpiar</button>
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-card-content>
+              </mat-card>
+        </div>
+        <!-- <div class="col-6">
+            <mat-card class="small-card" style="height: 100%;">
+                <mat-card-content>
+                    <h2>Dato Cliente</h2>
+                    <mat-form-field appearance="fill" class="example-full-width custom-input">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="cliente.nombres">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="example-full-width custom-input">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput placeholder="Apellidos" [(ngModel)]="cliente.apellidoPaterno">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="example-full-width custom-input">
+                        <mat-label>Documento Identidad</mat-label>
+                        <input matInput placeholder="Documento Identidad" [(ngModel)]="cliente.numeroDocumento">
+                    </mat-form-field>
+                    <br>
+                    <h2>Seleccione Servicio</h2>
+
+                    <div class="servicios-container">
+                      <ng-container *ngFor="let servicio of servicios; let i = index;">
+                        <button mat-stroked-button class="mb-2" style="margin-right: 10px; margin-bottom: 10px; width: 210px; height: 45px;"  [style.gridColumn]="i % 2 === 0 ? '1 / span 1' : '2 / span 1'"
+                          [disabled]="!tieneDatosCliente()"
+                          (click)="onClickBoton(servicio.id, servicio.nombreServicio)">
+                          <img [src]="servicio.imagen" alt="{{ servicio.nombreServicio }}" height="20px">
+                          {{ servicio.nombreServicio }}
+                        </button>
+                      </ng-container>
+                    </div>
+                    
+
+             
+                </mat-card-content>
+            </mat-card>
+        </div> -->
+    
+        <div class="col-6">
+          <mat-card class="small-card" style="height: 100%;">
+              <mat-card-content>
+                  <h2>Dato Cliente</h2>
+                  <mat-form-field appearance="fill" class="example-full-width custom-input">
+                      <mat-label>Nombre</mat-label>
+                      <input matInput placeholder="Nombre" [(ngModel)]="cliente.nombres">
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field appearance="fill" class="example-full-width custom-input">
+                      <mat-label>Apellidos</mat-label>
+                      <input matInput placeholder="Apellidos" [(ngModel)]="cliente.apellidoPaterno">
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field appearance="fill" class="example-full-width custom-input">
+                      <mat-label>Documento Identidad</mat-label>
+                      <input matInput placeholder="Documento Identidad" [(ngModel)]="cliente.numeroDocumento">
+                  </mat-form-field>
+                  <br>
+                  <h2>Seleccione Servicio</h2>
+      
+                  <div class="servicios-container">
+                    <ng-container *ngFor="let servicio of servicios; let i = index;">
+                        <button mat-stroked-button class="mb-2" style="margin-right: 10px; margin-bottom: 10px; width: 210px; height: 45px;"
+                            [style.gridColumn]="i % 2 === 0 ? '1 / span 1' : '2 / span 1'"
+                            [disabled]="!tieneDatosCliente()"
+                            [class.servicio-seleccionado]="servicio === servicioSeleccionado" 
+                            (click)="servicioSeleccionado = servicio">
+                            <img [src]="servicio.imagen" alt="{{ servicio.nombreServicio }}" height="20px">
+                            {{ servicio.nombreServicio }}
+                        </button>
+                    </ng-container>
+                </div>
+                
+                <!-- Botón "Generar Ticket" -->
+                <button mat-raised-button color="primary" style="margin-top: 20px;" [disabled]="!servicioSeleccionado" (click)="onClickGenerarTicket()">Generar Ticket</button>
+                
+                
+              </mat-card-content>
+          </mat-card>
+      </div>
+      
+    
+      </div>
+</div>

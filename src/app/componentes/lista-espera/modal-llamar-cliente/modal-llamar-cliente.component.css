@@ -1,0 +1,16 @@
+@keyframes parpadeo {
+    0% {
+      background-color: #ffffff; /* Color de fondo inicial */
+    }
+    50% {
+      background-color: #ffcc00; /* Color de fondo intermedio */
+    }
+    100% {
+      background-color: #ffffff; /* Color de fondo final */
+    }
+  }
+  
+  .parpadeo {
+    animation: parpadeo 1s infinite; /* Aplicar la animación de parpadeo */
+  }
+  

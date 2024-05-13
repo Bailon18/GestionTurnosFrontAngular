@@ -1,0 +1,41 @@
+
+<br>
+<mat-card class="p-4 custom-scroll" style="background-color: rgb(241, 241, 241);">
+    <h1 mat-dialog-title style="font-weight: 500;">Lista de videos</h1>
+  
+    <div style="display: flex; align-items: flex-end;">
+        <button mat-raised-button color="primary" class="mb-3"  (click)='abrirDialogoNuevoVideo()' style="max-width: 270px; margin-left: auto;">
+          <mat-icon>add</mat-icon> Agregar nuevo video
+        </button>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3" *ngFor="let video of videos">
+        <div class="card" [ngClass]="{'selected': video.seleccionado}">
+          <div class="card-body">
+            <h5 class="card-title">{{ video.nombre }}</h5>
+            <!-- Agregar el reproductor de video -->
+            <video width="100%" controls>
+              <!-- Aquí debes establecer la URL del video -->
+              <source  [src]="video.video" type="video/mp4">
+              <!-- Mensaje alternativo si el navegador no puede reproducir el video -->
+              Tu navegador no soporta la reproducción de video.
+            </video>
+            <!-- Botones de acción -->
+            <button mat-icon-button color="primary" (click)='editarVideo(video)'>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)='eliminarVideo(video)'>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)='seleccionarVideo(video)'>
+              <mat-icon>check_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </mat-card>
+  

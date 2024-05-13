@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+      <div class="col-md-6">
+        <mat-card style="padding: 20px; min-height: 530px;">
+
+
+            <div class="text-center mb-4" styles="width: 100%">
+                <div class="header-title mb-3">BNP SYSTEM</div>
+                <div class="header-date mb-2">{{ fechaActual | date:'EEEE, dd \'de\' MMMM yyyy' }}</div>
+                <div class="header-time">{{ fechaActual | date:'HH:mm:ss' }}</div>
+            </div>
+        
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <!-- Código Column -->
+              <ng-container matColumnDef="CODIGO">
+                <th mat-header-cell *matHeaderCellDef>Código</th>
+                <td mat-cell *matCellDef="let element">{{ element.numeroTicket }}</td>
+              </ng-container>
+              <!-- Nombre Column -->
+              <ng-container matColumnDef="NOMBRE">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element">{{ element.cliente.nombres }}</td>
+              </ng-container>
+              <!-- Módulo Column -->
+              <ng-container matColumnDef="MODULO">
+                <th mat-header-cell *matHeaderCellDef>Módulo</th>
+                <td mat-cell *matCellDef="let element">{{ element.modulo.nombre }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="ESTADO">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{'blinking': element.estado === 'Acercarse'}">
+                  <button mat-button [ngStyle]="{'background-color': element.estado === 'Pendiente' ? '#FFD700' : (element.estado === 'Atendiendo' ? '#00695C' : 'inherit'), 'font-weight': 'bold'}">
+                    {{ element.estado }}
+                  </button>
+                </td>
+              </ng-container>
+              
+              <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnas;" [ngClass]="{'blinking': row.estado === 'Acercarse'}"></tr>
+           
+            </table>
+            <br>
+
+            <mat-paginator  [pageSize]="6"
+              aria-label="">
+            </mat-paginator>
+        </mat-card>
+        
+      </div>
+      <div class="col-md-6">
+        <div class="embed-responsive embed-responsive-16by9" style="min-height: 500px">
+          <video id="videoElement" [src]="videoss" type="video/mp4" class="embed-responsive-item" [muted]="'muted'"  controls [autoplay]="'autoplay'" loop></video>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  

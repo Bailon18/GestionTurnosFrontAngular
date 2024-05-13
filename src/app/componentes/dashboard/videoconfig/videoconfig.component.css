@@ -1,0 +1,10 @@
+.custom-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 650px; 
+  }
+
+  .selected {
+    background-color: lightblue;
+  }
+  

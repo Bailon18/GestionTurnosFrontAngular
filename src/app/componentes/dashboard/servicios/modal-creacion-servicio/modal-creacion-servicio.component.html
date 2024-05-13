@@ -1,0 +1,61 @@
+<h1 mat-dialog-title style="font-weight: 500;">{{titulo}}</h1>
+
+<form [formGroup]="servicioForm" novalidate enctype="multipart/form-data" style="padding: 25px;">
+
+
+    <div class="row mb-2">
+
+        <!-- NOMBRE -->
+        <div class="col-6">
+            <input type="hidden" formControlName="id">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombreServicio">
+                <mat-error *ngIf="isValidField('nombreServicio')">
+                    {{ getFieldError('nombreServicio') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+   
+      
+        <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="activo">
+                    <mat-option [value]=true>Activo</mat-option>
+                    <mat-option [value]=false>Inactivo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+            
+        
+    </div>
+    
+    <div class="row mb-2">
+
+        <div class="col-6">
+            <p class="texto">Agregar imagen</p>
+            <input #imagenInputFile type="file" formControlName="imagen"
+                accept="image/png, image/jpeg, image/gif" (change)="mostrarVistaPrevia()"
+                placeholder="Selecciona una imagen">
+        </div>
+        <div class="col-6">
+            <img id="imagenPreview" [src]="imagenSegura" alt="Vista previa de la imagen seleccionada" height="160" width="160"
+                (load)="banImagenprev()">
+            <input type="hidden" formControlName="imagenurl" (change)="banImagenprev()">
+        </div>
+        
+    </div>
+
+
+
+    <div class="row mb-2">
+        <div class="col text-end">
+            <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+            <button class="btn btn-primary" type="submit" (click)="guardarServicio()"
+                [disabled]="servicioForm.invalid">{{tituloBoton}}</button>
+        </div>
+    </div>
+
+</form>

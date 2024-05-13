@@ -1,0 +1,161 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link href="/assets/css/app.css" rel="stylesheet">
+
+<div class="wrapper">
+
+    <!-- MENU  -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+
+        <div class="sidebar-content js-simplebar">
+
+            <a class="sidebar-brand" href="index.html">
+                <span class="sidebar-brand-text align-middle">
+                    gestionturno
+                </span>
+            </a>
+
+            <div class="row">
+                <div class="d-flex justify-content-center" style="margin-left: 23px">
+                    <div class="flex-shrink-0">
+                        <img src="/assets/imagen/userdefault.png" class="avatar img-fluid rounded me-1"
+                            alt="Charles Hall" />
+                    </div>
+                    <div class="flex-grow-1 ps-2">
+                        <a class="sidebar-user-title" style="color: #fff">
+                            {{this.tokenService.getUserName()}}
+                        </a>
+                        <div class="sidebar-user-subtitle" style="color: #fff">{{ tokenService.getAuthorities() | titlecase }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">Menu</li>
+            
+                <!-- Gestion Turno -->
+                <li class="sidebar-item" routerLinkActive="active">
+                    <a class="sidebar-link" routerLink="/dashboard/atencionturno" *ngIf="this.tokenService.getAuthorities() != 'Administrador'">
+                        <i class="fa-solid fa-users fa-lg"></i> <span class="align-middle">Gestion Turno</span>
+                    </a>
+                </li>
+            
+                <!-- Mantenimiento -->
+                <li class="sidebar-item" *ngIf="this.tokenService.getAuthorities() == 'Administrador'">
+                    <a class="sidebar-link" data-toggle="collapse" href="#mantenimiento" aria-expanded="false">
+                        <i class="fa-solid fa-tools fa-lg"></i> <span class="align-middle">Mantenimiento</span>
+                    </a>
+                    <div class="collapse" id="mantenimiento">
+                        <ul class="flex-column pl-3 nav">
+                            <li class="sidebar-item" routerLinkActive="active">
+                                <a class="sidebar-link" routerLink="/dashboard/usuarios">
+                                    <i class="fas fa-user fa-lg"></i> <span class="align-middle">Usuarios</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item" routerLinkActive="active">
+                                <a class="sidebar-link" routerLink="/dashboard/modulos">
+                                    <i class="fas fa-cog fa-lg"></i> <span class="align-middle">Modulos</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item" routerLinkActive="active">
+                                <a class="sidebar-link" routerLink="/dashboard/servicios">
+                                    <i class="fas fa-cog fa-lg"></i> <span class="align-middle">Servicios</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item" routerLinkActive="active">
+                                <a class="sidebar-link" routerLink="/dashboard/video">
+                                    <i class="fas fa-video fa-lg"></i> <span class="align-middle">Video Sala Espera</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </li>
+            
+                <!-- Reporte -->
+                <li class="sidebar-item" *ngIf="this.tokenService.getAuthorities() == 'Administrador'">
+                    <a class="sidebar-link" data-toggle="collapse" href="#reporte" aria-expanded="false">
+                        <i class="fa-solid fa-chart-bar fa-lg"></i> <span class="align-middle">Reporte</span>
+                    </a>
+                    <div class="collapse" id="reporte">
+                        <ul class="flex-column pl-3 nav">
+                            <li class="sidebar-item" routerLinkActive="active">
+                                <a class="sidebar-link" routerLink="/dashboard/reporte">
+                                    <i class="fa-solid fa-file-alt fa-lg"></i> <span class="align-middle">Reporte</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="sidebar-cta">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" (click)="logOut()">
+                            <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+                            <span class="align-middle">Salir</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+
+        <!-- NAVAR -->
+        <nav class="navbar navbar-expand navbar-dark navbar-bg">
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" data-bs-toggle="dropdown">
+                            <i class="align-middle" data-feather="settings"></i>
+                        </a>
+
+                        <a class="nav-link dropdown-toggle d-none d-sm-inline-block" data-bs-toggle="dropdown">
+                            <img src="/assets/imagen/userdefault.png" class="avatar img-fluid rounded me-1"
+                                alt="Charles Hall" /> <span class="text-dark">{{this.tokenService.getUserName()}}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                        
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logOut()" ref="#!">Cerrar Sesíon</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- CONTENIDO PRINICIPAL -->
+        <main>
+            <div class="container-fluid px-4">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+
+        <footer class="footer" id="main-content">
+            <div class="container-fluid">
+                <div class="row text-muted">
+                    <div class="col-6 text-start">
+                        <p class="mb-0">
+                            <a class="text-muted" target="_blank"><strong>gestionturno</strong></a> - <a
+                                class="text-muted" target="_blank"><strong>V 01</strong></a> &copy;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="/assets/js/app.js"></script>

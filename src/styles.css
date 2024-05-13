@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden; /* Agrega esta línea para ocultar el scroll vertical */
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-header-cell {
+  color:black;
+  font-size:14px;
+  font-family: "Helvetica Neue",;
+  font-weight: bold!important;
+}
+
+.mat-cell {
+font-family: "Helvetica Neue",;
+}
+
+.mat-header-cell {
+  text-align: center !important;
+}
+
+.mat-cell {
+  text-align: center !important;
+}
+
+.mat-tooltip.tooltip {
+  font-size: 12px;
+}
+
+.mat-header-cell {
+  color: black; /* Cambia el color del texto a negro */
+  font-weight: bold; /* Aplica negrita al texto */
+  font-size: 15px;
+}
+.mat-mdc-header-cell{
+  color: white;
+  background-color: #2f4053 !important;
+}
+
+
+.mat-row:hover {
+  background-color: rgb(240, 239, 239);
+}
+

@@ -1,0 +1,61 @@
+<h1 mat-dialog-title style="font-weight: 500;">{{titulo}}</h1>
+
+<form [formGroup]="moduloForm" style="padding: 25px;">
+
+
+    <div class="row mb-2">
+
+        <!-- NOMBRE -->
+        <div class="col-6">
+            <input type="hidden" formControlName="id">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="isValidField('nombre')">
+                    {{ getFieldError('nombre') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+   
+      
+        <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="activo">
+                    <mat-option [value]=true>Activo</mat-option>
+                    <mat-option [value]=false>Inactivo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+            
+        
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col">
+            <h3>Selecciona los servicios:</h3>
+            <div *ngFor="let servicio of servicios">
+                <mat-checkbox 
+                  [checked]="isSelected(servicio.id)"
+                  (change)="toggleServicioSeleccionado(servicio.id)">
+                    <img [src]="servicio.imagen" alt="{{ servicio.nombreServicio }}" style="width: 50px; height: 50px; margin-right: 10px;">
+                    {{ servicio.nombreServicio }}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    <div class="row mb-2">
+        <div class="col text-end">
+            <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+            <button class="btn btn-primary" type="submit" (click)="guardarModulo()"
+                [disabled]="moduloForm.invalid">{{tituloBoton}}</button>
+        </div>
+    </div>
+
+</form>

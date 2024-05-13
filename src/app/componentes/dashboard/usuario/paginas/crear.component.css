@@ -1,0 +1,23 @@
+
+.mat-radio-inner-circle {
+    background-color: blue;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mensaje{
+  font-size: 12px;
+}
+
+
+

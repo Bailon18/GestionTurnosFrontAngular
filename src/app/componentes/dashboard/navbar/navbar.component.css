@@ -1,0 +1,48 @@
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  
+  /* Cambia el color de fondo del menú */
+  #sidebar {
+    background-color: #2f4053; /* Cambia el color de fondo a tu preferencia */
+  }
+  
+  /* Cambia el color del texto y los iconos del menú */
+  .sidebar-link {
+    color: #fff; /* Cambia el color del texto a blanco o tu preferencia */
+  }
+  
+  .sidebar-link i {
+    color: #fff; /* Cambia el color de los iconos a blanco o tu preferencia */
+  }
+  
+  /* Cambia el color del texto del usuario y perfil */
+  .sidebar-user-title {
+    color: #fff; /* Cambia el color del texto a blanco o tu preferencia */
+  }
+  
+  .sidebar-user-subtitle {
+    color: #fff; /* Cambia el color del texto a blanco o tu preferencia */
+  }
+  
+  /* Cambia el color del menú desplegable de usuario */
+  .dropdown-menu {
+    background-color: #2f4053; /* Cambia el color de fondo del menú desplegable a tu preferencia */
+    color: #fff;
+  }
+  
+  
+  /* Estilo para la opción del menú seleccionada */
+  .menu-item-active {
+    background-color: #4CAF50; /* Cambia el color de fondo a tu preferencia */
+    color: #fff; /* Cambia el color del texto a blanco o tu preferencia */
+  }
+  
+  .menu-item-active i {
+    color: #fff; /* Cambia el color de los iconos a blanco o tu preferencia */
+  }
+  

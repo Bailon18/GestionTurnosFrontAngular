@@ -1,0 +1,54 @@
+<h1 mat-dialog-title style="font-weight: 500;">{{titulo}}</h1>
+
+<form [formGroup]="videoForm" novalidate enctype="multipart/form-data" style="padding: 25px;">
+    <div class="row mb-2">
+        <!-- NOMBRE -->
+        <div class="col-6">
+            <input type="hidden" formControlName="id">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="isValidField('nombre')">
+                    {{ getFieldError('nombre') }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <!-- SELECCIONADO -->
+        <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Seleccionar video como principal</mat-label>
+                <mat-select formControlName="seleccionado">
+                    <mat-option [value]="true">Si</mat-option>
+                    <mat-option [value]="false">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <!-- AGREGAR VIDEO -->
+        <div class="col-6">
+            <p class="texto">Agregar Video</p>
+            <input #videoInputFile type="file" formControlName="video" accept="video/mp4, video/webm, video/ogg" 
+            (change)="mostrarVistaPrevia($event)" placeholder="Selecciona un video">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <!-- VISTA PREVIA DEL VIDEO -->
+        <p class="texto">Vista previa Video</p>
+        <div class="col">
+            <video *ngIf="videoSegura" width="450px" height="300px" controls [src]="videoSegura"  (change)="banImagenprev()">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+    </div>
+    
+
+    <div class="row mb-2">
+        <div class="col text-end">
+            <button mat-button mat-dialog-close>Cancelar</button>
+            <button mat-raised-button color="primary" type="submit" (click)="guardarVideo()"
+                [disabled]="videoForm.invalid">{{tituloBoton}}</button>
+        </div>
+    </div>
+</form>

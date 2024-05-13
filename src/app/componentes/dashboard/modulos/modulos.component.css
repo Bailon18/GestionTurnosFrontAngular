@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+
+.iconosAccion {
+  margin: 3px;
+}
+.success-icon{
+  color:green
+}
+.danger-icon{
+  color:red
+}
+.pdf-icon{
+  color:rgb(97, 74, 74)
+}
+
+.example-margin {
+    height: auto;
+  width: 100%;
+}
+
+
+td.mat-cell img {
+    max-width: 100px; 
+    max-height: 100px; 
+  }
+  
+
+  .bold-asterisk {
+    font-weight: bold;
+}

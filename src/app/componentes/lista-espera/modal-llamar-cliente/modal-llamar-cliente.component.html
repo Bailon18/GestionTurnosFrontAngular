@@ -1,0 +1,21 @@
+<div class="modal-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th scope="col">Número Ticket</th>
+            <th scope="col">Nombre Cliente</th>
+            <th scope="col">Módulo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="parpadeo">
+            <td>{{ ticket.numeroTicket }}</td>
+            <td>{{ ticket.cliente.nombres }} {{ ticket.cliente.apellidoPaterno }}</td>
+            <td>{{ ticket.modulo.nombre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

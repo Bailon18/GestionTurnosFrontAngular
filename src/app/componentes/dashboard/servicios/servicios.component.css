@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+  }
+
+.iconosAccion {
+  margin: 3px;
+}
+.success-icon{
+  color:green
+}
+.danger-icon{
+  color:red
+}
+.pdf-icon{
+  color:rgb(97, 74, 74)
+}
+
+.example-margin {
+    height: auto;
+  width: 100%;
+}
+
+
+/* En tu archivo de estilos CSS */
+td.mat-cell img {
+    max-width: 100px; /* Cambia el valor según el tamaño deseado */
+    max-height: 100px; /* Cambia el valor según el tamaño deseado */
+  }
+  
+

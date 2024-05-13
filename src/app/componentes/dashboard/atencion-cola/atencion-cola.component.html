@@ -1,0 +1,146 @@
+<mat-card class="mt-5" style="background-color: rgb(170, 175, 179);">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-8">
+          <br>
+          <mat-card class="p-3">
+              <div class="row">
+                  <div class="row">
+                      <div class="col-6 mb-2">
+                          <mat-card-title>
+                  
+                          </mat-card-title>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <mat-card-content>
+                              <div class="row">
+                                  <div class="col-6">
+                                      <div class="row">
+                                          <div class="col-8">
+                                          </div>
+                                          <div class="col-4" style="margin-top: 18px;">
+                                              <!-- <mat-checkbox color="primary" class="example-margin" [(ngModel)]="estadoFiltro" (click)="mostrarInactivos()">Mostrar Inactivos</mat-checkbox> -->
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-6 text-end">
+                                      <!-- <button class="btn btn-primary" (click)="abrirDialogoNuevoUsuario()">Nuevo Usuario</button> -->
+                                  </div>
+                              </div>
+                              <div class="mat-elevation-z8" style="max-height: 400px; overflow-y: auto;">
+                                  <table mat-table [dataSource]="dataSource">
+                                      <ng-container matColumnDef="TICKET">
+                                      <th mat-header-cell *matHeaderCellDef> N° Ticket</th>
+                                      <td mat-cell *matCellDef="let fila"> {{fila.numeroTicket}} </td>
+                                      </ng-container>
+                                  
+                                      <ng-container matColumnDef="FECHA">
+                                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                        <td mat-cell *matCellDef="let fila"> {{ fila.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                                      </ng-container>
+                                      
+                          
+                                      <ng-container matColumnDef="CLIENTE">
+                                          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+                                          <td mat-cell *matCellDef="let fila"> {{fila.cliente.nombres}} {{fila.cliente.apellidoPaterno}} {{fila.cliente.apellidoMaterno}}</td>
+                                      </ng-container>
+                                      
+                                                                
+                                      <ng-container matColumnDef="SERVICIO">
+                                        <th mat-header-cell *matHeaderCellDef> Servicio </th>
+                                        <td mat-cell *matCellDef="let fila"> {{fila.servicio.nombreServicio}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="ESTADO">
+                                      <th mat-header-cell *matHeaderCellDef> Estado </th>
+                                      <td mat-cell *matCellDef="let fila"> {{fila.estado}} </td>
+                                  </ng-container>
+              
+                                  
+                                  <ng-container matColumnDef="ACCIONES">
+                                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                                    <td mat-cell *matCellDef="let fila">
+                                      <a class="pointer iconosAccion text-success" matTooltip="Seleccionar Cliente" (click)="seleccionarCliente(fila)">
+                                        <i class="fas fa-check-circle"></i>
+                                      </a>
+                                      
+                            
+                                    </td>
+                                  </ng-container>
+                                  
+                                      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                                  </table>
+                                  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                      aria-label="">
+                                  </mat-paginator>
+                              </div>
+                          </mat-card-content>
+                      </div>
+                  </div>
+              </div>
+          </mat-card>
+        </div>
+  
+        <div class="col-md-4">
+          <br>
+          <mat-card class="p-3">
+            <mat-card-title>Turno en Atención</mat-card-title>
+            <br>
+            <mat-card-content>
+              <div class="info-container">
+                <div class="info-item">
+                  <i class="fas fa-user info-icon"></i>
+                  <div class="info-text">
+                    <strong>Cliente:</strong>
+                    <span *ngIf="selectedRow">{{ selectedRow.cliente.nombres }} {{ selectedRow.cliente.apellidoPaterno }} {{ selectedRow.cliente.apellidoMaterno }}</span>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-cog info-icon"></i>
+                  <div class="info-text">
+                    <strong>Servicio:</strong>
+                    <span *ngIf="selectedRow">{{ selectedRow.servicio.nombreServicio }}</span>
+                  </div>
+                </div>
+                <div class="info-item ticket-item">
+                  <i class="fas fa-ticket-alt info-icon"></i>
+                  <div class="info-text">
+                    <strong>Ticket:</strong>
+                    <span *ngIf="selectedRow" class="ticket-number">{{ selectedRow.numeroTicket }}</span>
+                  </div>
+                </div>
+
+                <div class="info-item ticket-item">
+                  <i class="fas fa-ticket-alt info-icon"></i>
+                  <div class="info-text">
+                    <strong>Estado atención:</strong>
+                    <span *ngIf="selectedRow" class="ticket-number">{{ selectedRow.estado }}</span>
+                  </div>
+                </div>
+
+              </div>
+              
+              
+              <br>
+              <div class="d-flex flex-column">
+                <h3>Acciones principales</h3>
+                <button mat-stroked-button color="primary" (click)="llamarCliente(selectedRow)" class="mb-3"><i class="fas fa-phone-alt"></i> Llamar </button>
+                <button mat-stroked-button style="color: #00796B;" (click)="actualizarEstadoTicket(selectedRow.id,'En proceso', 'En proceso')" class="mb-1"><i class="fas fa-play"></i> Iniciar </button>
+                <button mat-stroked-button color="warn" (click)="actualizarEstadoTicket(selectedRow.id,'Atendido', 'Finalizado')" class="mb-3"><i class="fas fa-check-circle" ></i> Finalizar </button>
+              
+                <h3>Acciones secundarias</h3>
+                <button mat-stroked-button style="color: #AFB42B;" (click)="actualizarEstadoTicket(selectedRow.id,'Pendiente', 'limpiar')" class="mb-1"><i class="fas fa-unlock"></i> Liberar </button>
+                <button mat-stroked-button style="color: #512DA8;" (click)="actualizarEstadoTicket(selectedRow.id,'No se presentó','Ausente')"><i class="fas fa-times-circle"></i> No se presentó</button>
+              </div>
+              
+            
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
