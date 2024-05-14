@@ -5,6 +5,7 @@ import { VideoSalaEspera } from './video';
 import { CrearVvideoComponent } from './crear-vvideo/crear-vvideo.component';
 import { MatDialog } from '@angular/material/dialog';
 import swall from 'sweetalert2';
+import { VideoServiciosData } from 'src/app/VideoServiciosData';
 
 @Component({
   selector: 'app-videoconfig',
@@ -12,26 +13,40 @@ import swall from 'sweetalert2';
   styleUrls: ['./videoconfig.component.css']
 })
 export class VideoconfigComponent implements OnInit {
+  
   videos: VideoSalaEspera[] = [];
 
   constructor(
     private videosService: VideosService,
-     private sanitizer: DomSanitizer,
-     public dialog: MatDialog
-     ) { }
+    private videoServiciosData: VideoServiciosData,
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
-    this.listarVideos();
+    this.listarVideos()
+ 
   }
 
-  listarVideos(): void {
+  listarVideos(){
+    const cachedVideos = this.videoServiciosData.recuperarVideos();
+    if (cachedVideos && cachedVideos.length > 0) {
+      this.videos = cachedVideos;
+    } else {
+      this.listarYGuardarVideos();
+    }
+  }
+
+
+  listarYGuardarVideos(): void {
     this.videosService.listarVideos().subscribe(
       response => {
         this.videos = response.map(video => {
           video.video = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + video.video);
           return video;
         });
-        
+        // Guardar la lista de videos para futuras referencias
+        this.videoServiciosData.guardarVideos(this.videos);
       },
       error => {
         console.error('Error al obtener la lista de videos:', error);
@@ -39,24 +54,23 @@ export class VideoconfigComponent implements OnInit {
     );
   }
 
-
   abrirDialogoNuevoVideo() {
     this.dialog.open(CrearVvideoComponent, {
-        width:'500px',
-     }).afterClosed().subscribe(valor =>{
-        this.listarVideos();
+      width: '500px',
+    }).afterClosed().subscribe(valor => {
+      this.listarYGuardarVideos();
     });
   }
 
-  editarVideo(fila: any){
-    this.dialog.open(CrearVvideoComponent,{
-      width:'500px',
-      data:fila
-    }).afterClosed().subscribe(valor =>{
-      this.listarVideos();
+  editarVideo(fila: any) {
+    this.dialog.open(CrearVvideoComponent, {
+      width: '500px',
+      data: fila
+    }).afterClosed().subscribe(valor => {
+      this.listarYGuardarVideos();
     });
   }
-
+  
   seleccionarVideo(fila: any){
 
       const pregunta = `¿Estás seguro de seleccionar el video <strong>${fila.nombre}</strong>? para la sala de espera?`;
@@ -76,7 +90,7 @@ export class VideoconfigComponent implements OnInit {
 
           this.videosService.seleccionarVideo(fila.id).subscribe({
             next: (res) => {
-              this.listarVideos();
+              this.listarYGuardarVideos();
             },
             error: (error) => {
               console.error('Ocurrió un error', error);
@@ -111,7 +125,7 @@ export class VideoconfigComponent implements OnInit {
 
         this.videosService.eliminarVideo(fila.id).subscribe({
           next: (res) => {
-            this.listarVideos();
+            this.listarYGuardarVideos();
           },
           error: (error) => {
             console.error('Ocurrió un error', error);

@@ -93,15 +93,25 @@ export class ListaEsperaComponent implements AfterViewInit, OnInit{
   obtenerEventoLLamado(){
 
     this.webSocketService.connect();
-    this.webSocketService.response.subscribe((data: Ticket) => {
-    
-      this.abrirDialogLlamarCliente(data);
+    this.webSocketService.response.subscribe ({
+
+      next: data => {
+
+        this.abrirDialogLlamarCliente(data);
+
+      }, error : error => {
+        console.log(error)
+      }
+
     })
+
   }
 
 
   abrirDialogLlamarCliente(data: Ticket): void {  
-    
+
+
+
     if (this.modalRef) {
       this.modalRef.close();
     }

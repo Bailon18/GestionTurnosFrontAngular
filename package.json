@@ -27,6 +27,7 @@
     "bootstrap": "^5.3.2",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
+    "lzutf8": "^0.6.3",
     "net": "^1.0.2",
     "pdfmake": "^0.2.10",
     "rxjs": "^7.5.2",
